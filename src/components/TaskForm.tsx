@@ -1,14 +1,16 @@
 interface TaskFormProps {
-  taskTitle: string
-  setTaskTitle: (value: string) => void
-  addTask: () => void
+  taskTitle: string;
+  setTaskTitle: (value: string) => void;
+  addTask: () => void;
 }
 
-function TaskForm({
-  taskTitle,
-  setTaskTitle,
-  addTask,
-}: TaskFormProps) {
+function TaskForm({ taskTitle, setTaskTitle, addTask }: TaskFormProps) {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      addTask();
+    }
+  };
+
   return (
     <div className="mt-8 flex gap-3">
       <input
@@ -16,6 +18,7 @@ function TaskForm({
         placeholder="Введите новую задачу..."
         value={taskTitle}
         onChange={(e) => setTaskTitle(e.target.value)}
+        onKeyDown={handleKeyDown}
         className="flex-1 rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
       />
 
@@ -26,7 +29,7 @@ function TaskForm({
         Добавить
       </button>
     </div>
-  )
+  );
 }
 
-export default TaskForm
+export default TaskForm;
