@@ -54,31 +54,33 @@ function App() {
   })
 
   return (
-    <main
-      style={{
-        padding: '40px',
-        maxWidth: '700px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Task Manager</h1>
+    <main className="min-h-screen bg-slate-100 py-16 px-4">
+      <div className="mx-auto max-w-3xl rounded-3xl bg-white p-8 shadow-xl">
+        <h1 className="text-4xl font-bold text-slate-900">
+          Task Manager
+        </h1>
 
-      <TaskForm
-        taskTitle={taskTitle}
-        setTaskTitle={setTaskTitle}
-        addTask={addTask}
-      />
+        <p className="mt-2 text-slate-500">
+          Управляй своими задачами красиво
+        </p>
 
-      <FilterBar
-        filter={filter}
-        setFilter={setFilter}
-      />
+        <TaskForm
+          taskTitle={taskTitle}
+          setTaskTitle={setTaskTitle}
+          addTask={addTask}
+        />
 
-      <TaskList
-        tasks={filteredTasks}
-        toggleTask={toggleTask}
-        deleteTask={deleteTask}
-      />
+        <FilterBar
+          filter={filter}
+          setFilter={setFilter}
+        />
+
+        <TaskList
+          tasks={filteredTasks}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+        />
+      </div>
     </main>
   )
 }

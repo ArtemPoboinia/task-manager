@@ -1,32 +1,32 @@
 interface TaskFormProps {
-  taskTitle: string;
-  setTaskTitle: (value: string) => void;
-  addTask: () => void;
+  taskTitle: string
+  setTaskTitle: (value: string) => void
+  addTask: () => void
 }
 
-function TaskForm({ taskTitle, setTaskTitle, addTask }: TaskFormProps) {
+function TaskForm({
+  taskTitle,
+  setTaskTitle,
+  addTask,
+}: TaskFormProps) {
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "10px",
-        marginTop: "20px",
-      }}
-    >
+    <div className="mt-8 flex gap-3">
       <input
         type="text"
-        placeholder="Введите задачу"
+        placeholder="Введите новую задачу..."
         value={taskTitle}
         onChange={(e) => setTaskTitle(e.target.value)}
-        style={{
-          flex: 1,
-          padding: "10px",
-        }}
+        className="flex-1 rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
       />
 
-      <button onClick={addTask}>Добавить</button>
+      <button
+        onClick={addTask}
+        className="rounded-xl bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
+      >
+        Добавить
+      </button>
     </div>
-  );
+  )
 }
 
-export default TaskForm;
+export default TaskForm
