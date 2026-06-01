@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Task } from "./types/task";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
 
 function App() {
   const [taskTitle, setTaskTitle] = useState("");
@@ -48,66 +50,13 @@ function App() {
     >
       <h1>Task Manager</h1>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginTop: "20px",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Введите задачу"
-          value={taskTitle}
-          onChange={(e) => setTaskTitle(e.target.value)}
-          style={{
-            flex: 1,
-            padding: "10px",
-          }}
-        />
+      <TaskForm
+        taskTitle={taskTitle}
+        setTaskTitle={setTaskTitle}
+        addTask={addTask}
+      />
 
-        <button onClick={addTask}>Добавить</button>
-      </div>
-
-      <ul
-        style={{
-          listStyle: "none",
-          padding: 0,
-          marginTop: "20px",
-        }}
-      >
-        {tasks.map((task) => (
-          <li
-            key={task.id}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              background: "#fff",
-              padding: "12px",
-              marginBottom: "10px",
-              borderRadius: "8px",
-            }}
-          >
-            <span
-              style={{
-                textDecoration: task.completed ? "line-through" : "none",
-                opacity: task.completed ? 0.5 : 1,
-              }}
-            >
-              {task.title}
-            </span>
-
-            <div style={{ display: "flex", gap: "8px" }}>
-              <button onClick={() => toggleTask(task.id)}>
-                {task.completed ? "Отменить" : "Выполнить"}
-              </button>
-
-              <button onClick={() => deleteTask(task.id)}>Удалить</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <TaskList tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask} />
     </main>
   );
 }
